@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="workshop.config.StudentMapper">
+
+	<select id="selectAll" resultType="Student">
+	<![CDATA[
+		select STUDENT_NO 학번, STUDENT_NAME 이름,
+			rpad(substr(STUDENT_SSN, 0, 8), 14, '*') 주민번호,
+			substr(STUDENT_ADDRESS, 0, 10)||'...' 주소,
+			to_char(ENTRANCE_DATE, 'yyyy/mm/dd') 입학년도, 
+			ABSENCE_YN 휴학여부 
+		from TB_STUDENT order by 1
+		]]>
+	</select>
+	
+	<select id="selectByStuName" parameterType="string" resultType="Student">
+	<![CDATA[
+		select STUDENT_NO 학번, STUDENT_NAME 이름,
+			rpad(substr(STUDENT_SSN, 0, 8), 14, '*') 주민번호,
+			substr(STUDENT_ADDRESS, 0, 10)||'...' 주소,
+			to_char(ENTRANCE_DATE, 'yyyy/mm/dd') 입학년도, 
+			ABSENCE_YN 휴학여부 
+		from TB_STUDENT 
+		where STUDENT_NAME like '%'||#{stuName}||'%'
+		order by 1
+	]]>
+	</select>
+	
+	<select id="selectByEntrance" parameterType="hashmap" resultType="Student">
+	<![CDATA[
+		SELECT STUDENT_NO 학번, 
+		  STUDENT_NAME 이름, 
+		  rpad(substr(STUDENT_SSN, 0, 8), 14, '*') 주민번호,  
+		  CASE WHEN STUDENT_ADDRESS IS NULL THEN '**주소미상**' 
+		  	ELSE substr(STUDENT_ADDRESS, 0, 10)||'...' END 주소,  
+		  to_char(ENTRANCE_DATE, 'yyyy/mm/dd') 입학년도, ABSENCE_YN 휴학여부 
+		FROM TB_STUDENT 
+		WHERE #{beginEnt} <= to_char(ENTRANCE_DATE, 'yyyy') and to_char(ENTRANCE_DATE, 'yyyy') <= #{endEnt}  
+		ORDER BY ENTRANCE_DATE DESC
+	]]>
+	</select>
+	
+	<select id="selectByStuNo" parameterType="arraylist" resultType="Student">
+		SELECT STUDENT_NO 학번,  
+			STUDENT_NAME 이름, 
+			rpad(substr(STUDENT_SSN, 0, 8), 14, '*') 주민번호,  
+			CASE WHEN STUDENT_ADDRESS IS NULL THEN '**주소미상**' ELSE substr(STUDENT_ADDRESS, 0, 10)||'...' END 주소,  
+			to_char(ENTRANCE_DATE, 'yyyy/mm/dd') 입학년도, ABSENCE_YN 휴학여부 
+		FROM TB_STUDENT 
+		WHERE STUDENT_NO IN
+			<foreach collection="list" index="index" item="stuNo" open="(" close=")" separator=",">
+			#{stuNo} 
+			</foreach>
+		order by 1
+	</select>
+	
+	<update id="updateStuAbs" parameterType="arraylist">
+	   update TB_STUDENT 
+	   set ABSENCE_YN = 'Y'
+	   where STUDENT_NO IN
+	   		<foreach collection="list" index="index" item="stuNo" open="(" close=")" separator=",">
+			#{stuNo} 
+			</foreach>
+	</update>
+
+	<update id="capacityChange">
+	   update tb_department 
+	   set capacity = case
+	   	when capacity between 0 and 20 then capacity+5
+	   	when capacity between 21 and 25 then capacity+4
+	   	when capacity between 26 and 30 then capacity+3 else capacity end
+	</update>
+
+	<select id="gradeSearch" parameterType="string" resultType="hashmap">
+		select term_no, s.student_no, student_name, class_name, to_char(point, '0.00') point, 
+			case when point >= 4.0 then 'A학점' 
+			when point >= 3.5 then 'B학점' 
+			when point >= 3.0 then 'C학점' 
+			when point >= 2.0 then 'D학점' 
+			ELSE 'F학점' end grade 
+			from TB_STUDENT s join TB_GRADE g on s.student_no = g.student_no join tb_class c on g.class_no = c.class_no 
+			where s.student_no = #{stuNo}
+	</select>
+	
+	<select id="countAll" resultType="int">
+		select count(*) from TB_STUDENT
+	</select>
+
+</mapper>
