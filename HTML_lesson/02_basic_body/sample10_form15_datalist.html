@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form 태그 실습</title>
+</head>
+<body>
+  			    <!-- 
+				    search : search 필드
+				    크롬과 사파리에서 실행
+				 -->
+  <form name="myForm" action="target.html" method="post">
+    좋아하는 과일
+     <input type="text"
+					name="fruitTest" list="fruit" autocomplete="on"
+					placeholder="apple grape orange banana" >
+					 
+					<datalist id="fruit">
+						<option value="apple" label="사과">
+						<option value="grape" label="포도">
+						<option value="orange" label="오렌지">
+						<option value="banana" label="바나나">
+					</datalist>
+   <input type="submit" value="전송">	
+  </form>
+      	
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form 태그 실습</title>
+</head>
+<body>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+	</script>
+    <script type="text/javascript">
+		$(document).ready(function(){
+					 var fileInfos = [];
+					 $("#theFile").change( function(event){
+	
+				 			var selectedFiles = this.files;
+				 			
+				     	   
+				     	   for( var i = 0; i < selectedFiles.length  ; i++ ){
+				     		   var file = selectedFiles[i];
+				     		   fileInfos.push("파일이름: "  + file.name + " 크기 : " + file.size);
+				     	   }
+				     	   $("#fileDiv").text(fileInfos); 
+				 		});
+			     });
+
+                 </script>
+  <form name="myForm" action="target.html" method="post" 
+         enctype="multipart/form-data">
+      파일선택1:<input type="file" name="file" id="theFile" multiple="multiple" accept="image/*" ><br>
+      <div id="fileDiv"></div>
+      파일선택2:<input type="file" name="theFile"><br>
+     <input type="submit" value="전송">
+     <input type="reset" value="취소">
+  </form>
+     	
+</body>
+</html>
