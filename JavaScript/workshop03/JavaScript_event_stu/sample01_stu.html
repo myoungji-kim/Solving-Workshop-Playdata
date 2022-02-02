@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+   function up(){
+	   document.getElementById("quantity").value++;
+   }
+   
+   function down(){
+	   if (document.getElementById("quantity").value != 1){
+		   document.getElementById("quantity").value--;
+	   }
+   }
+
+
+</script>
+</head>
+<body>
+갯수<input type="text" name="quantity"  id="quantity" value="1">
+<button id="up" onclick="up()">+</button><button id="down" onclick="down()">-</button>
+</body>
+</html>
