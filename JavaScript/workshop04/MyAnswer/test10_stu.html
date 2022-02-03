@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var lst = [];
+	var user = ({name, age, address}) => lst.push({name, age, address})
+	
+	function save(){
+		var name = document.querySelector('#username').value;
+		var age = document.querySelector('#age').value;
+		var address = document.querySelector('#address').value;
+		
+		user({name: name, age:age, address:address});
+		document.querySelector('#result').innerHTML="<h3>저장 완료</h3>";
+	}
+	
+	function print(){
+		var mesg = "";
+		for (var i=0; i<lst.length; i++){
+			var person = lst[i];
+			mesg += (i+1) +" 번째 고객<br>";
+			mesg += "이름: "+person.name+"<br>";
+			mesg += "나이: "+person.age+"<br>";
+			mesg += "주소: "+person.address+"<br>";
+		}
+		document.querySelector('#result').innerHTML = mesg;
+	}
+		
+		
+</script>
+</head>
+<body>
+	<h3>JSON 객체</h3>
+	이름
+	<input type="text" name="username" id="username">
+	<br> 나이
+	<input type="text" name="age" id="age">
+	<br> 주소
+	<input type="text" name="address" id="address">
+	<br>
+	<button onclick="save()">저장</button>
+	<br>
+	<button onclick="print()">출력</button>
+	<br>
+	<div id="result"></div>
+</body>
+</html>

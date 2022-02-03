@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+    window.onload=function(){
+    	document.querySelector('#cal').onclick = function(){
+    		var word = document.querySelector('#v1').value.split(' ');
+    		var spell = 0;
+    		for (var i of word){
+    			spell += i.length;
+    		}
+    		
+    		document.querySelector('#result').innerHTML = `단어수: ${word.length} <br> 글자수: ${spell}`;
+    	}
+    }
+  
+</script>
+</head>
+<body>
+<h3>문자열 관리</h3>
+값:<input type="text" name="v1" id="v1" value="How are you? fine thank you">
+<button id="cal">데이터 분석</button><br>
+<div id="result"></div>
+</body>
+</html>

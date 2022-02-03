@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var lst = [];
+	var num = 0;
+	var newNum = 0;
+	var sum = 0;
+	
+	function three(){
+		num += 1;
+		newNum = num * 3;
+		sum += newNum;
+		lst.push(newNum);
+		
+		document.querySelector('#result').innerHTML=`배열: ${lst}<br>클릭한 수 : ${num} <br>합계 : ${sum}`;
+	}
+	
+</script>
+</head>
+<body>
+	<h3>배수 출력</h3>
+	<button onclick="three()">3의 배수</button>
+	<div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+    window.onload=function(){
+    	document.querySelector('#cal').onclick=function(){
+    		
+    		var nums = document.querySelector('#v1').value.split(',');
+    		
+    		nums.sort(function(a, b) {
+    			return a - b; // 오름차순 
+    		});
+    		console.log(nums);
+    		
+    		// 1. 합계 구하기
+    		var sum = 0;
+    		for (var i of nums){
+    			sum += Number.parseInt(i);
+    		}
+    		
+    		
+    		// 2. 평균 구하기
+    		var aver = (sum / nums.length).toFixed(2);
+    		
+    		// 3. 중앙값 구하기
+    		var middle = 0;
+    		if (nums.length % 2 == 0){
+    			middle = (Number.parseInt(nums[nums.length/2 - 1]) + Number.parseInt(nums[nums.length/2])) / 2;
+    		} else {
+    			middle = nums[nums.length/2 - 0.5];
+    		}
+    		
+    		document.querySelector('#result').innerHTML = `합계: ${sum} <br>
+    														평균 : ${aver} <br>
+    														중앙값 : ${middle}`
+    	}
+    }
+   
+  
+</script>
+</head>
+<body>
+<h3>배열 관리</h3>
+값:<input type="text" name="v1" id="v1" value="1,5,10,9,3,7,23,4,6,8">
+<button id="cal">데이터 분석</button><br>
+<div id="result"></div>
+</body>
+</html>

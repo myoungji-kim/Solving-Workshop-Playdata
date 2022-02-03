@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+     window.onload=function(){
+    	 document.querySelector('#cal').onclick=function(){
+    		 var sum = 0;
+    		 var nums = document.querySelector('#v1').value.split('/');
+    		 console.log(nums);
+    		 for (var i of nums){
+    			 console.log(i);
+    			 sum += Number.parseInt(i);
+    		 }
+    		 document.querySelector('#result').innerText = sum;
+    	 }
+     }
+  
+</script>
+</head>
+<body>
+<h3>문자열 처리</h3>
+값:<input type="text" name="v1" id="v1" value="10/20/30">
+<button id="cal">합계</button><br>
+합계:<span id="result"></span>
+</body>
+</html>

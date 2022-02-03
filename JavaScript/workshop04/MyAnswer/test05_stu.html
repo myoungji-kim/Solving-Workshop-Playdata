@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload = function() {
+		var lst;
+		document.querySelector('#make').onclick = function() {
+			lst = [];
+		}
+		
+		document.querySelector('#delete').onclick = function() {
+			lst = [];
+		}
+		
+		document.querySelector('#save').onclick = function() {
+			lst.push(document.querySelector('#v1').value);
+		}
+
+		document.querySelector('#print').onclick = function() {
+			document.querySelector('#result').innerText = lst;
+		}
+	}
+</script>
+</head>
+<body>
+	<h3>배열 관리</h3>
+	<button id="make">배열생성</button>
+	<button id="delete">배열삭제</button>
+	<br> 값:
+	<input type="text" name="v1" id="v1">
+	<button id="save">배열에 값 저장</button>
+	<br>
+	<button id="print">배열에 값 출력</button>
+	<br>
+	<div id="result"></div>
+</body>
+</html>
