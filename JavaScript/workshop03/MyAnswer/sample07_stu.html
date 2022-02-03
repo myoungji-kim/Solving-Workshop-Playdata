@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var sum = 0;
+	function cal(){
+		sum += Number.parseInt(event.target.outerText);
+		document.getElementById("result").innerText = sum;
+	}
+</script>
+</head>
+<body>
+	<button onclick="cal()">5</button>
+	<button onclick="cal()">10</button>
+	<button onclick="cal()">15</button>
+	<br> 총합:
+	<span id="result"></span>
+</body>
+</html>

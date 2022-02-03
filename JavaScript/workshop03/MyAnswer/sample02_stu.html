@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		var chk = document.querySelectorAll("input:checked");
+		var str = "";
+		for (var i of chk){
+			str += i.value + " ";
+		}
+		document.querySelector("#result").innerText = str;
+		str = "";
+	}
+ 
+</script>
+</head>
+<body>
+취미<br>
+<ul>
+<li>야구<input type="checkbox" name="hobby" value="야구"></li>
+<li>농구<input type="checkbox" name="hobby" value="농구"></li>
+<li>게임<input type="checkbox" name="hobby" value="게임"></li>
+</ul>
+<button onclick="check()">결과보기</button><br>
+결과값:<div id="result"></div>
+</body>
+</html>
