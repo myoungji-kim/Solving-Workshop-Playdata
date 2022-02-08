@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+   span{
+     color:red;
+   }
+</style>
+<script type="text/javascript">
+	//Ajax 담당: XMLHttpRequest 객체
+
+	var httpRequest;
+	function req() {
+		event.preventDefault();
+		httpRequest = new XMLHttpRequest();
+		console.dir(httpRequest);
+
+		//요청시 응답처리하는 함수 호출
+		httpRequest.onreadystatechange = responseFun;
+
+		var userid = document.querySelector("#userid").value
+		httpRequest.open("get", `loginCheckServlet?userid=${userid}`, true); // open("get|post",타켓, true|false); true:비동기, false:동기
+		httpRequest.send(null); // get방식이면 null지정
+		
+		
+	}
+
+	function responseFun() {
+		if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+			var data = httpRequest.responseText;
+			console.log(data);
+			document.querySelector("#result").innerText = data;
+			
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<form action="myLogin" method="post">
+		아이디<input type="text" name="userid" id="userid">
+		<button onclick="req()">중복조회</button>
+		<span id="result"></span> <br> 비밀번호<input type="text"
+			name="passwd" id="passwd"><br> <input type="submit"
+			value="로그인">
+	</form>
+</body>
+</html>

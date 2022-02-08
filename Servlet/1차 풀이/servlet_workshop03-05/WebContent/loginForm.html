@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function check(){
+		if (document.querySelector("#id").value == "" || document.querySelector("#pw").value == ""){
+			alert("아이디 및 비밀번호를 확인하세요");
+			return false;
+		}
+	}
+</script>
+</head>
+<h1> 서블릿 워크샵 03+04+05 </h1>
+<body>
+<form action="myLogin" method="post">
+아이디 : <input type="text" id="id" name="userid"><br>
+비밀번호 : <input type="text" id="pw" name="passwd"><br>
+<input type="submit" onclick="return check();" value="로그인">
+</form>
+</body>
+</html>

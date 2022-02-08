@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var httpRequest;
+	function req() {
+		httpRequest = new XMLHttpRequest();
+		
+		// 요청 시 응답 처리하는 함수
+		httpRequest.onreadystatechange = responseFun;
+		
+		// true는 비동기
+		httpRequest.open("get", "LoginCheckServlet", true);
+		httpRequest.send(null); // get 방식일 경우
+	}
+	
+	function responseFun(){
+		if (httpRequest.readyState==4 && httpRequest.status == 200){
+			var data = document.querySelector("#id").value;
+			// 아 진짜 모르겠다아아아아아아ㅏ.......
+		}
+		var html = "으악";
+		
+		document.querySelector('#result').innerHTML = html;
+	}
+
+	function check(){
+		req();
+	}
+</script>
+
+</head>
+<body>
+<h1> 서블릿 워크샵 마지막 문제!! </h1>
+<form method="get">
+아이디 : <input type="text" name="id"> 
+<input type="button" value="중복조회" onclick="check()">
+<span id="result"></span>
+<br>
+비밀번호 : <input type="text" name="pw"> <br>
+</form>
+</body>
+</html>
