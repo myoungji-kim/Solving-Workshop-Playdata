@@ -19,6 +19,8 @@
 	
 	function responseFun(){
 		if (httpRequest.readyState==4 && httpRequest.status == 200){
+			// responseText의 역할
+			// 서블릿에서 뜨고 있는 텍스트들을 그대로 가져옴 (ex. out.print(result))
 			var data = httpRequest.responseText;
 			document.querySelector('#result').innerText = data;
 		}
