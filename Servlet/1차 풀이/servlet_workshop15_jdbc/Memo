@@ -1,0 +1,9 @@
+1.
+DB 연동을 위한
+lib 폴더에 ojdbc_g.jar 추가
+
+2.
+package 및 mvc 패턴에 맞게 파일 구성하기
+com.-
+
+
