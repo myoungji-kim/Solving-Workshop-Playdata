@@ -9,18 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/LoginCheckServlet")
+@WebServlet("/loginCheckServlet")
 public class LoginCheckServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 요청 처리
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		System.out.println("servlet-id: "+id);
+		String result = "사용 가능";
+		if("test".equals(id)) {
+			result = "사용 불가";
+		}
 		
-		// 응답 처리
-		response.setContentType("text/html; charset=utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
+		out.print(result);
+
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
