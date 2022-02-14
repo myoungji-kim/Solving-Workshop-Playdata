@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.EmpMapper">
+
+	<select id="selectAll" resultType="EmpDTO">
+	<![CDATA[
+		select empno, ename, sal, TO_CHAR(hiredate, 'YYYY/MM/DD') as hiredate, deptno from emp
+		]]>
+		
+	</select>
+
+	<!-- <select id="selectAllDesc" resultType="EmpDTO">
+	<![CDATA[
+		select deptno,dname,loc
+		from dept
+		order by deptno desc
+		]]>
+		
+	</select>
+	<select id="selectAllAsc" resultType="DeptDTO">
+	<![CDATA[
+		select deptno,dname,loc
+		from dept
+		order by deptno asc
+		]]>
+		
+	</select>
+	<select id="selectByDeptno" resultType="DeptDTO"
+		parameterType="int">
+		<![CDATA[
+		select deptno,dname,loc
+		from dept
+		where deptno = #{deptno}
+		]]>
+		
+	</select>
+	<select id="selectByDname" resultType="DeptDTO"
+		parameterType="string">
+		<![CDATA[
+		select deptno,dname,loc
+		from dept
+		where dname = #{dname}
+		]]>
+		
+	</select>
+	<select id="selectByDnameLoc" resultType="DeptDTO"
+		parameterType="DeptDTO">
+		<![CDATA[
+		select deptno,dname,loc
+		from dept
+		where dname = #{dname} and loc = #{loc}
+		]]>
+		
+	</select>	
+	<select id="selectByDnameLocMap" resultType="DeptDTO"
+		parameterType="hashmap">
+		<![CDATA[
+		select deptno,dname,loc
+		from dept
+		where dname = #{m_dname} and loc = #{m_loc}
+		]]>
+		
+	</select>	
+	
+	<insert id="insert" parameterType="DeptDTO">
+	<![CDATA[
+	    insert into dept ( deptno, dname, loc )
+	    values ( #{deptno} , #{dname} , #{loc})
+	    ]]>
+	    
+	</insert>
+	
+	<update id="update" parameterType="DeptDTO">
+	<![CDATA[
+	   update dept 
+	   set dname = #{dname} , loc=#{loc}
+	   where deptno = #{deptno}
+	   ]]>
+	   
+	</update>
+	<delete id="delete" parameterType="int">
+	<![CDATA[
+	   delete from dept
+	   where deptno = #{deptno}
+	   ]]>
+	   
+	</delete>
+	
+	<select id="selectLike" parameterType="string" resultType="DeptDTO">
+	<![CDATA[
+		select deptno,dname,loc
+		from dept
+		where dname like '%'||#{dname}||'%'
+		]]>
+		
+	</select>
+	 -->
+</mapper>
+
+
+
+
+
